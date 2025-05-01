@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const formStatus = document.getElementById('formStatus');
 
     // --- IMPORTANT : Remplacez ceci par l'URL de votre Web App Google Apps Script ---
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwIiwEGTj_ywWMyw6-nlAldBzQ_0B22s6EL_-I3AkbEdzWI9DFDGDEOz2HsaAMLi6XWFg/exec"; // <--- METTRE VOTRE URL ICI
+    const SCRIPT_URL = "https://hook.eu2.make.com/l9pfcfsr2bdgpgn3g1lqapg6x65fsib5"; // <--- METTRE VOTRE URL ICI
 
     // Fonction pour ouvrir le modal
     const openModal = (event) => {
@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.json(); // Parse the JSON response
+                // Make.com typically returns JSON, so parse it
+                return response.json();
             })
             .then(result => {
                 console.log('Success:', result);

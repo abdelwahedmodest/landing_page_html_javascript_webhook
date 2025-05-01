@@ -91,18 +91,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 // Make.com typically returns JSON, so parse it
-                return response.json();
+                return response.text();
             })
             .then(result => {
                 console.log('Success:', result);
-                formStatus.textContent = "Merci ! Votre commande a été enregistrée.";
+                formStatus.textContent = "Merci ! Votre commande a été enregistrée. Vous allez être redirigé vers PayPal.";
                 formStatus.className = 'success'; // Applique la classe CSS pour le succès
                 formStatus.classList.remove('hidden');
-                purchaseForm.reset(); // Réinitialiser le formulaire
+                //purchaseForm.reset(); // Do not reset the form
                 ribDetails.style.display = 'none'; // Cacher RIB
 
                 // Optionnel: Fermer le modal après un délai
-                setTimeout(closeModal, 3000); // Ferme après 3 secondes
+                setTimeout(function() {
+                    window.location.href = 'https://paypal.me/abdelwahedtoday';
+                }, 2000); // Redirect after 2 seconds
+
             })
             .catch(error => {
                 console.error('Error sending data:', error);
